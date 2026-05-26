@@ -1,0 +1,26 @@
+{
+  "name": "gamer-registry",
+  "version": "1.0.0",
+  "description": "Sistema simples CRUD para ensino de testes de software.",
+  "homepage": "https://github.com/micheltartas/gamer-registry#readme",
+  "bugs": {
+    "url": "https://github.com/micheltartas/gamer-registry/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micheltartas/gamer-registry.git"
+  },
+  "license": "ISC",
+  "author": "Michel Soares Tartas",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "pg": "^8.18.0"
+  }
+}
