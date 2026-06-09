@@ -21,3 +21,53 @@ test("retornando se é uma lista de jogos", async () => {
     expect(response.body.length).toBeGreaterThan(0);
     
 });
+
+// POST http://localhost:3000/api/games
+test("criar um novo jogo", async () => {
+    const response = await request(app).post("/api/games")
+        .send({
+            //id: 6,
+            title: "Game Post",
+            genre: "Diversão",
+            release_year: 2026
+        });
+    expect(response.statusCode).toBe(200);
+    expect(response.body.title).toBe("Game Post");
+    // expect(response.body.id).toBe(6);
+    expect(response.body.genre).toBe("Diversão");
+});
+
+//POST com retorno de erros
+test("post com retorno de erro", async () => {
+    const response = await request(app).post("/api/games").send({});
+    expect(response.statusCode).toBe(500);
+});
+
+test("verificar estrutura do objeto retornado", async () => {
+    const response = await request(app).post("/api/games")
+        .send({
+            id: 1,
+            title: "Game Post",
+            genre: "Diversão",
+            release_year: 2026
+        });
+    expect(response.body).toHaveProperty("title");
+    expect(response.body).toHaveProperty("title", "Game Post");
+    expect(response.body).toHaveProperty("genre");
+    expect(response.body).toHaveProperty("release_year");
+    expect(response.body).toHaveProperty("id");
+});
+
+test("Buscar um jogo por id", async () => {
+    const response = await request(app).post("/api/games")
+        .send({
+            id: 6,
+            title: "Game Post",
+            genre: "Diversão",
+            realise_year: 2026
+        });
+    const respone2 = await request(app)
+        .get(`/api/games/${response.body.id}`);
+
+    expect(respone2.statusCode).toBe(200);
+});
